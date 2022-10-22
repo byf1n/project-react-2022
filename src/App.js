@@ -1,7 +1,14 @@
+import {Route, Routes} from "react-router-dom";
+import {MoviesPage} from "./pages/MoviesPage";
+
 const App = () => {
     return (
         <div>
-            App
+            <Routes>
+                <Route path={'/'} element={<MoviesPage/>}>
+
+                </Route>
+            </Routes>
         </div>
     );
 };

@@ -4,7 +4,7 @@ let roodReducer = combineReducers({
 
 });
 
-let setupStore = configureStore({
+let setupStore = () => configureStore({
     reducer: roodReducer
 });
 

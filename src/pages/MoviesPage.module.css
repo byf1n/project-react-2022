@@ -1,0 +1,13 @@
+.header{
+    display: flex;
+    justify-content: space-evenly;
+    height: 10vh;
+    background-color: antiquewhite;
+    align-items: center;
+    margin-top: -10px;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+.genres{
+    display: flex;
+}
