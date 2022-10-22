@@ -10,4 +10,19 @@
 }
 .genres{
     display: flex;
+    justify-content: space-evenly;
+    height: 20vh;
+    background-color: #0b66a6;
+    align-items: center;
+    flex-wrap:wrap;
+    margin-right: -10px;
+    margin-left: -10px;
+    padding-left: 40px;
+
+
+}
+.genre{
+    width: 14vw;
+    color: #fff8f8;
+    cursor: pointer;
 }

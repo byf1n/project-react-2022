@@ -1,14 +1,28 @@
 import css from "../MoviesPage.module.css";
 import {useForm} from "react-hook-form";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {genreActions} from "../../redux";
 
 const Header = () => {
 
-    const {register,handleSubmit,reset} = useForm();
+    const [show,setShow] = useState(false);
+
+    useEffect(() => {
+        dispatch(genreActions.getAllGenres())
+    },[])
+
+    const {register, handleSubmit, reset} = useForm();
 
     const submit = (data) => {
         console.log(data.search);
-
     }
+
+    const {genres} = useSelector(state => state.genreReducer);
+
+
+    const dispatch = useDispatch();
+
     return (
         <div>
             <div className={css.header}>
@@ -22,12 +36,12 @@ const Header = () => {
                     </form>
                 </div>
                 <div>
-                    <button>genres</button>
+                    <button onClick={() => setShow(!show)}>genres</button>
                 </div>
             </div>
-            <div className={css.genres}>
-
-            </div>
+                {show && <div className={css.genres}>
+                    {genres.map(genre => <div  className={css.genre} key={genre.id}>{genre.name}</div>)}
+                </div>}
         </div>
     )
 }
