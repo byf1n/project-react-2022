@@ -1,36 +1,35 @@
 import css from './Search.module.css'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {moviesActions} from "../redux";
+import {services} from "../services/services";
 
 
-const SearchPost = ({movie,movies}) => {
+const SearchPost = ({mov:{id:IdMovie,name}}) => {
 
 
-    //
-    const obj = movies.find(mov => mov.original_title.toLowerCase() === movie.name.toLowerCase());
 
-    console.log(movies);
+    console.log(IdMovie);
 
+    const [movie, setMovie] = useState();
 
-    // const {genres} = useSelector(state => state.genreReducer);
-    //
-    // const genre = genres.find(genre => genre.id === obj.genre_ids[0]);
+    useEffect(() => {
+        services.getMovieById(IdMovie).then(({data}) => setMovie(data))
+    },[IdMovie])
 
-    // console.log(obj);
+    console.log(movie);
+
+    const navigate = useNavigate();
 
     return (
-        // <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-        //     <div  className={css.post}>
-        //         <div><img src={`https://image.tmdb.org/t/p/w400${obj.backdrop_path}`} alt="img"/></div>
-        //         <div className={css.text}>
-        //             <div>{obj.original_title}</div>
-        //             <div>{obj.release_date.slice(0, 4)}, {obj.original_language}{/*, {genre.name}*/}</div>
-        //             <div>{obj.vote_average}</div>
-        //         </div>
-        //     </div>
-        // </div>
+    <div>
+
         <div>
-            a
+            <h1>{name}</h1>
+            id: {IdMovie}
         </div>
+    </div>
 
     )
 }

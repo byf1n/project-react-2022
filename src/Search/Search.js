@@ -9,24 +9,28 @@ const Search = () => {
     const {name} = useParams();
     console.log(name);
 
+    const {movies,id,searchMovies} = useSelector(state => state.movieReducer);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(moviesActions.getAllMoviesBySearch({value:name}))
+        dispatch(moviesActions.getAllMovies({id:id}))
+    }, [id])
+
+    useEffect(() => {
+        dispatch(moviesActions.getAllMoviesBySearch({value:name.toLowerCase()}))
     },[name])
-
-    const {searchMovies} = useSelector(state => state.movieReducer);
-
-    const {movies} = useSelector(state => state.movieReducer);
-
-    console.log(movies);
 
     return (
         <div>
             <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-                {searchMovies.map(movie => <SearchPost movies={movies} movie={movie} key={movie.id}/>)}
+                {/*{JSON.stringify(searchMovies)}*/}
+                <div>
+                    {searchMovies && searchMovies.map(mov => <SearchPost key={mov.id} mov={mov} />)}
+                </div>
             </div>
-            {JSON.stringify(searchMovies)}
+
+
         </div>
     )
 }

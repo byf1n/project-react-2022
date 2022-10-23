@@ -3,7 +3,7 @@ import {useForm} from "react-hook-form";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {genreActions, moviesActions} from "../../redux";
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 
 const Header = () => {
 
@@ -29,9 +29,16 @@ const Header = () => {
 
     const dispatch = useDispatch();
 
+    const {id} = useSelector(state => state.movieReducer);
+
     return (
         <div>
             <div className={css.header}>
+                <div onClick={() => dispatch(moviesActions.changeId(1))} className={css.link}>
+                    <div className={css.btnnn}>
+                        <NavLink to={'/list'}>home</NavLink>
+                    </div>
+                </div>
                 <div>
                     <button>sw</button>
                 </div>
@@ -46,7 +53,7 @@ const Header = () => {
                 </div>
             </div>
                 {show && <div className={css.genres}>
-                    {genres.map(genre => <div  className={css.genre} key={genre.id}>{genre.name}</div>)}
+                    {genres.map(genre => <div onClick={()=> navigate(`genres/${genre.name}`)} className={css.genre} key={genre.id}>{genre.name}</div>)}
                 </div>}
         </div>
     )

@@ -1,3 +1,9 @@
+body{
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
 .header{
     display: flex;
     justify-content: space-evenly;
@@ -26,3 +32,22 @@
     color: #fff8f8;
     cursor: pointer;
 }
+.link a {
+    text-decoration: none;
+    color: #000000;
+    font-size: larger;
+
+
+
+}
+.link{
+    background-color: #67a4ef;
+    width: 5vw;
+    height: 2vw;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 0.5vw;
+    cursor: pointer;
+
+}
+
