@@ -2,9 +2,12 @@ import css from "../MoviesPage.module.css";
 import {useForm} from "react-hook-form";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {genreActions} from "../../redux";
+import {genreActions, moviesActions} from "../../redux";
+import {useNavigate} from "react-router-dom";
 
 const Header = () => {
+
+    const navigate = useNavigate();
 
     const [show,setShow] = useState(false);
 
@@ -16,6 +19,9 @@ const Header = () => {
 
     const submit = (data) => {
         console.log(data.search);
+        // dispatch(moviesActions.getAllMoviesBySearch({value:data.search}))
+        navigate(`${data.search}`)
+
     }
 
     const {genres} = useSelector(state => state.genreReducer);

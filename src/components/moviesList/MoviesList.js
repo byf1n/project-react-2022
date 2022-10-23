@@ -2,6 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {moviesActions} from "../../redux";
 import {MoviesListCard} from "../MoviesListCard/MoviesListCard";
+import {PaddingStuff} from "../paddingStuff/PaddingStuff";
 
 const MoviesList = () => {
 
@@ -12,12 +13,15 @@ const MoviesList = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(moviesActions.getAllMovies())
+        dispatch(moviesActions.getAllMovies({id:id}))
     }, [id])
 
     return (
-        <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-            {movies.map(movie => <MoviesListCard genres={genres} key={movie.id} movie={movie}/>)}
+        <div>
+            <PaddingStuff/>
+            <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+                {movies.map(movie => <MoviesListCard genres={genres} key={movie.id} movie={movie}/>)}
+            </div>
         </div>
     )
 }

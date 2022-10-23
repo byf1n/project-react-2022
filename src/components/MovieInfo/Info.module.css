@@ -1,0 +1,16 @@
+.block{
+   display: flex;
+
+}
+.main{
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.info{
+    margin-left: 1vw;
+    font-size: large;
+    margin-top: 10px;
+}
+img{
+    height: 350px;
+}

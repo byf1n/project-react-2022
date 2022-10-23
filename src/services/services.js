@@ -13,6 +13,11 @@ const services = {
             'Authorization': `Bearer ${TOKEN}`
         }
     }),
+    getMovieBySearch: (value) => axiosService(urls.searchMovies + value,{
+        headers: {
+            'Authorization': `Bearer ${TOKEN}`
+        }
+    })
 
 
     // getAllGenres: () => axios.get('https://jsonplaceholder.typicode.com/users')

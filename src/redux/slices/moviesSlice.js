@@ -4,18 +4,29 @@ import {useSelector} from "react-redux";
 
 
 const initialState = {
+    searchMovies: [],
     movies: [],
-    id: 1,
+    id: 1
 
 }
 
-
+const getAllMoviesBySearch = createAsyncThunk(
+    'moviesSlice/getMoviesBySearch',
+    async ({value}, {rejectWithValue}) => {
+        try {
+            const {data} = await services.getMovieBySearch(value);
+            return data.results;
+        } catch (e){
+            return rejectWithValue(e.response.value)
+        }
+    }
+);
 
 const getAllMovies = createAsyncThunk(
     'moviesSlice/getAll',
-    async (_,{rejectWithValue}) => {
+    async ({id},{rejectWithValue}) => {
         try {
-            const {data} = await services.getMovieById(initialState.id);
+            const {data} = await services.getMovieById(id);
             return data.results;
         } catch (e){
             return rejectWithValue(e.response.value)
@@ -35,12 +46,15 @@ const moviesSlice = createSlice({
             .addCase(getAllMovies.fulfilled, (state, action) => {
                 state.movies = action.payload
             })
+            .addCase(getAllMoviesBySearch.fulfilled, (state, action) => {
+                state.searchMovies = action.payload
+            })
 });
 
 const {reducer:movieReducer,actions:{changeId}} = moviesSlice;
 
 const moviesActions = {
-    getAllMovies,changeId
+    getAllMovies,changeId,getAllMoviesBySearch
 }
 
 export {
