@@ -1,9 +1,9 @@
 import {Navigate, Route, Routes} from "react-router-dom";
-import {Main} from "./pages/Main";
-import {MoviesList} from "./components/moviesList/MoviesList";
-import {MovieInfo} from "./components/MovieInfo/MovieInfo";
+
+import {GenreBadge, MovieInfo, MoviesList} from "./components";
 import {Search} from "./Search/Search";
-import {GenreBadge} from "./components/GenreBadge/GenreBadge";
+import {Main} from "./pages/Main";
+
 
 const App = () => {
     return (
